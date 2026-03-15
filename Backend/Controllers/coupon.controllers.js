@@ -18,6 +18,20 @@ const createCoupon = async (req, res) => {
     }
 }
 
+const getAllCoupons = async (req, res) => {
+    try {
+        const response = await couponService.getAll();
+        successResponseBody.data = response;
+        successResponseBody.message = "Coupons fetched successfully.";
+        res.status(200).json(successResponseBody);
+    } catch(error) {
+        errorResponseBody.error = error;
+        errorResponseBody.message = "Failed to fetch coupons.";
+        res.status(500).json(errorResponseBody);
+    }
+}
+
 module.exports = {
-    createCoupon
+    createCoupon,
+    getAllCoupons
 }

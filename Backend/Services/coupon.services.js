@@ -18,6 +18,17 @@ const create = async ( couponData ) => {
     }
 }
 
+const getAll = async () => {
+    try {
+        const coupons = await Coupon.find();
+        return coupons;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
 module.exports = {
-    create
+    create,
+    getAll
 }
