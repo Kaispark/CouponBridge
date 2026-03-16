@@ -19,6 +19,20 @@ const signUp = async (req, res) => {
     }
 }
 
+const getAllProviders = async (req, res) => {
+    try {
+        const response = await providerService.getAll();
+        successResponseBody.data = response;
+        successResponseBody.message = "The providers retrieved successfully.";
+        res.status(200).json(successResponseBody);
+    } catch(error) {
+        errorResponseBody.error = error;
+        errorResponseBody.message = "Failed to retrieve the providers.";
+        res.status(500).json(errorResponseBody);
+    }
+}
+
 module.exports = {
-    signUp
+    signUp,
+    getAllProviders
 }
