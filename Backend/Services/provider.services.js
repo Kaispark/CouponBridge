@@ -19,7 +19,7 @@ const create = async (data) => {
 
 const getAll = async () => {
     try {
-        const providers = await Provider.find().populate('couponIds');
+        const providers = await Provider.find();
         return providers;
     } catch(error) {
         console.log(error);
@@ -29,7 +29,7 @@ const getAll = async () => {
 
 const getOne = async (id) => {
     try {
-        const provider = await Provider.findById(id).populate('couponIds');
+        const provider = await Provider.findById(id);
         return provider;
     } catch(error) {
         console.log(error);

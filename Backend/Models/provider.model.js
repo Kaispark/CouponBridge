@@ -10,28 +10,15 @@ const providerSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
+    providerPassword: {
         type: String,
         required: true
     },
-    noOfCoupons: {
-        type: Number,
-        default: 0
-    },
-    rating: {
+    ProviderRating: {
         type: Number,
         default: 0,
         min: 0,
         max: 6
-    },
-    couponIds: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Coupon',
-        default: []
-    }],
-    totalUsageCount: {
-        type: Number,
-        default: 0
     }
 
 }, { timestamps: true });

@@ -20,7 +20,7 @@ const create = async ( couponData ) => {
 
 const getAll = async () => {
     try {
-        const coupons = await Coupon.find();
+        const coupons = await Coupon.find().populate('providerId', 'providerName providerEmail').populate('customerId', 'customerName customerEmail');
         return coupons;
     } catch (error) {
         console.log(error);
@@ -30,7 +30,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
     try {
-        const coupon = await Coupon.findById(id);
+        const coupon = await Coupon.findById(id).populate('providerId', 'providerName providerEmail').populate('customerId', 'customerName customerEmail');
         return coupon;
     } catch (error) {
         console.log(error);
