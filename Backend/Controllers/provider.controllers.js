@@ -76,10 +76,24 @@ const deleteProvider = async (req, res) => {
     }
 }
 
+const getCouponsByProviderId = async (req, res) => {
+    try {
+        const response = await providerService.getAllCoupons(req.params.id);
+        successResponseBody.data = response;
+        successResponseBody.message = "The coupons of the provider retrieved successfully.";
+        res.status(200).json(successResponseBody);
+    } catch(error) {
+        errorResponseBody.error = error;
+        errorResponseBody.message = "Failed to retrieve the coupons of the provider.";
+        res.status(500).json(errorResponseBody);
+    }
+}
+
 module.exports = {
     signUp,
     getAllProviders,
     getProviderById,
     updateProviderById,
-    deleteProvider
+    deleteProvider,
+    getCouponsByProviderId
 }
