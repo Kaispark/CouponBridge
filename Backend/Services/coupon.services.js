@@ -20,7 +20,7 @@ const create = async ( couponData ) => {
 
 const getAll = async () => {
     try {
-        const coupons = await Coupon.find();
+        const coupons = await Coupon.find().populate('providerId', 'providerName providerEmail').populate('customerId', 'customerName customerEmail');
         return coupons;
     } catch (error) {
         console.log(error);
@@ -30,7 +30,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
     try {
-        const coupon = await Coupon.findById(id);
+        const coupon = await Coupon.findById(id).populate('providerId', 'providerName providerEmail').populate('customerId', 'customerName customerEmail');
         return coupon;
     } catch (error) {
         console.log(error);
@@ -65,10 +65,27 @@ const deleteById = async (id) => {
     }
 }
 
+const searchCoupons = async (queryData) => {
+    try {
+        let { query } = queryData;
+        query = query.toLowerCase().trim();
+        
+        let coupons = await Coupon.find({}).populate('providerId', 'providerName');
+        coupons = coupons.filter( coupon => {
+            return query.includes(coupon.merchant.toLowerCase().trim()) || query.includes(coupon.providerId.providerName.toLowerCase().trim());
+        });
+        return coupons;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
 module.exports = {
     create,
     getAll,
     getById,
     updateById,
-    deleteById
+    deleteById,
+    searchCoupons
 }

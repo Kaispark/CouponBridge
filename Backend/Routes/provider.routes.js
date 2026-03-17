@@ -8,6 +8,9 @@ const providerRoutes = ( app ) => {
     app.get('/cb/v1/api/providers', providerController.getAllProviders);
     app.get('/cb/v1/api/providers/:id', providerController.getProviderById);
 
+    // Get all coupons of a provider
+    app.get('/cb/v1/api/providers/:id/coupons', providerController.getCouponsByProviderId);
+
     // Update provider
     app.put('/cb/v1/api/providers/:id', providerController.updateProviderById);
 

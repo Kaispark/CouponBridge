@@ -1,14 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const couponRouter = require('./Routes/coupon.routes.js');
-const providerRoutes = require('./Routes/provider.routes.js');
+const providerRouter = require('./Routes/provider.routes.js');
+const customerRouter = require('./Routes/customer.routes.js');
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded( { extended: true }));
 
 couponRouter(app);
-providerRoutes(app);
+providerRouter(app);
+customerRouter(app);
 
 
 app.get('/', (req, res) => {

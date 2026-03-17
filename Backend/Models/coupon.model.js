@@ -27,6 +27,16 @@ const couponSchema = new mongoose.Schema({
     purchased: {
         type: Boolean,
         default: false
+    },
+    providerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Provider',
+        required: true
+    },
+    customerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Customer',
+        default: null
     }
 }, { timestamps: true });
 

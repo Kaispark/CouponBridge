@@ -1,10 +1,10 @@
-const Provider = require('../Models/provider.model.js');
-const Coupons = require('../Models/coupon.model.js');
+const Coupon = require('../Models/coupon.model.js');
+const Customer = require('../Models/customer.model.js');
 
 const create = async (data) => {
     try {
-        const provider = await Provider.create(data);
-        return provider;
+        const customer = await Customer.create(data);
+        return customer;
     } catch(error) {
         console.log(error);
         if(error.name === 'ValidationError') {
@@ -20,33 +20,33 @@ const create = async (data) => {
 
 const getAll = async () => {
     try {
-        const providers = await Provider.find();
-        return providers;
+        const customers = await Customer.find();
+        return customers;
     } catch(error) {
         console.log(error);
         throw error;
     }
 }
 
-const getOne = async (id) => {
+const getById = async (id) => {
     try {
-        const provider = await Provider.findById(id);
-        return provider;
+        const customer = await Customer.findById(id);
+        return customer;
     } catch(error) {
         console.log(error);
         throw error;
     }
 }
 
-const updateProvider = async (id, data) => {
+const update = async (id, data) => {
     try {
-        const provider = await Provider.findByIdAndUpdate(id, data, { new: true, runValidators: true });
-        return provider;
-    } catch(error) {
+        const customer = await Customer.findByIdAndUpdate(id,data, {new:true, runValidators: true});
+        return customer;
+    }catch (error) {
         console.log(error);
-        if(error.name === 'ValidationError') {
+        if(error.name === 'ValidationError' ) {
             let err = {};
-            Object.keys(error.errors).forEach ( key => {
+            Object.keys(error.errors).forEach( key => {
                 err[key] = error.errors[key].message;
             });
             throw { err, code: 400 };
@@ -57,29 +57,28 @@ const updateProvider = async (id, data) => {
 
 const destroy = async (id) => {
     try {
-        const provider = await Provider.findByIdAndDelete(id);
-        return provider;
-    } catch(error) {
-        console.log(error);
-        throw error;
-    }
-} 
-
-const getAllCoupons = async (providerId) => {
-    try {
-        const coupons = await Coupons.find({ providerId}).populate('customerId', 'customerName customerEmail');
-        return coupons;
+        const customer = await Customer.findByIdAndDelete(id);
+        return customer;
     } catch(error) {
         console.log(error);
         throw error;
     }
 }
 
+const getAllCoupons = async (customerId) => {
+    try {
+        const coupons = await Coupon.find( { customerId }).populate('providerId', 'providerName providerEmail');
+        return coupons;
+    } catch(error) {
+        console.log(error);
+        throw error;
+    }
+}
 module.exports = {
     create,
     getAll,
-    getOne,
-    updateProvider,
+    getById,
     destroy,
+    update,
     getAllCoupons
 }
