@@ -9,6 +9,12 @@ const customerRouter = ( app ) => {
 
         // Get a customer by Id
         app.get('/cb/v1/api/customers/:id', customerController.getCustomerById);
+
+        // Update a customer by Id
+        app.put('/cb/v1/api/customers/:id', customerController.updateCustomerById);
+
+        // Delete a customer by Id
+        app.delete('/cb/v1/api/customers/:id', customerController.deleteCustomerById);
 }
 
 module.exports = customerRouter;

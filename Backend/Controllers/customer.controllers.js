@@ -46,8 +46,42 @@ const getCustomerById = async(req, res) => {
     }
 }
 
+const updateCustomerById = async (req, res) => {
+    try {
+        const response = await customerService.update(req.params.id, req.body);
+        successResponseBody.data = response;
+        successResponseBody.message = "The customer updated successfully.";
+        res.status(200).json(successResponseBody);
+    } catch(error) {
+        if( error.err ){
+            errorResponseBody.error = error.err;
+            errorResponseBody.message = "Failed to update the customer.";
+            return res.status(error.code).json(errorResponseBody);
+        }
+        errorResponseBody.error = error;
+        errorResponseBody.message = "Failed to update the customer.";
+        res.status(500).json(errorResponseBody);
+    }
+}
+
+const deleteCustomerById = async (req, res) => {
+    try {
+        const response = await customerService.destroy(req.params.id);
+        successResponseBody.data = response;
+        successResponseBody.message = "The customer deleted successfully.";
+        return res.status(200).json(successResponseBody);
+    } catch (error) {
+        errorResponseBody.error = error;
+        errorResponseBody.message = "Failed to delete the customer.";
+        res.status(500).json(errorResponseBody);
+    }
+}
+
 module.exports = {
     signUp,
     getAllCustomers,
-    getCustomerById
+    getCustomerById,
+    updateCustomerById,
+    deleteCustomerById
+
 }
