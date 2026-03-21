@@ -25,6 +25,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
+            <div className="nav-background"></div>
         </>
     )
 }
