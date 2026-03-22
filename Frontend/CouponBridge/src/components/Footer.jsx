@@ -13,7 +13,7 @@ function Footer() {
                     <div className="footer-desc">
                         <div className="footer-desc-logo">
                             <SellIcon color="primary" className="footer-desc-icon" fontSize="large"/>
-                            <div className="heading footer-desc-name">CouponBridge</div>
+                            <div className="lg-heading footer-desc-name">CouponBridge</div>
                         </div>
                         <p className="text footer-desc-content">The trusted marketplace for verified discount coupons. Save money on your favorite brands.</p>
                     </div>

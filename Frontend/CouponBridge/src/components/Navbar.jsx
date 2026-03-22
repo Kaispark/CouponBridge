@@ -10,7 +10,7 @@ function Navbar() {
                 <div className = "nav-items heading">
                     <div class="logo">
                         <SellIcon color="primary" className="logo-icon" fontSize="large"/>
-                        <div className="logo-name">CouponBridge</div>
+                        <div className="logo-name lg-heading">CouponBridge</div>
                     </div>
                     <div className="menu-items sub-heading">
                         <Button variant="text" className="browse-coupons">Browse Coupons</Button>
