@@ -1,4 +1,4 @@
-import './Main.css';
+
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,7 +38,7 @@ const Main = () => {
                 </form>
 
                 <div id="auth-right-footer" className='sub-heading'>
-                        Don't have an account? <Button variant="text" onClick={ ()=> navigate('/login')}>Create Account</Button>
+                        Don't have an account? <Button variant="text" onClick={ ()=> navigate('/signup')}>Create Account</Button>
                 </div>
 
             </div>
