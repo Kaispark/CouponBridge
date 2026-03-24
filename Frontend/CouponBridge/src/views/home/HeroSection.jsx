@@ -24,7 +24,7 @@ function HeroSection(){
                     </p>
                     <div className="hero-navigate">
                         <div className="browse" onClick={() => navigate('/coupons')}>Browse Coupons <KeyboardDoubleArrowRightIcon/></div>
-                        <Button variant="contained" className="selling-btn">Start Selling</Button>
+                        <Button variant="contained" className="selling-btn" onClick={ () => navigate('/publish')}>Start Selling</Button>
                     </div>
                 </div>
 
