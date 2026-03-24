@@ -25,9 +25,6 @@
     padding: 1rem;
 }
 
-.card-like {
-    cursor: pointer;
-}
 
 .card-title {
     display: flex;
